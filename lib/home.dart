@@ -1,3 +1,4 @@
+import 'package:chat_app/screens.dart/chat_screen.dart';
 import 'package:chat_app/widgets/contact.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,16 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: ListView.builder(
               itemBuilder: (ctx, i) {
-                return Contact();
+                return Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (ctx) => ChatScreen()));
+                        },
+                        child: Contact()));
               },
               itemCount: 10,
               shrinkWrap: true,
