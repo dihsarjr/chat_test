@@ -10,6 +10,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         title: Text(
           "Chat",
@@ -21,7 +22,7 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(child: Container(child: ListView())),
           Container(
             height: 70,
-            color: Colors.teal[100],
+            color: Colors.black,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Row(
@@ -33,23 +34,30 @@ class _ChatScreenState extends State<ChatScreen> {
                         // labelText: "Enter Email",
                         hintText: "Chat",
                         fillColor: Colors.white,
+                        hintStyle: TextStyle(color: Colors.white70),
                         focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
+                          borderRadius: BorderRadius.circular(50.0),
                           borderSide: BorderSide(
                             color: Colors.blue,
+                            width: 3.0,
                           ),
                         ),
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25.0),
+                          borderRadius: BorderRadius.circular(50.0),
                           borderSide: BorderSide(
                             color: Colors.red,
-                            width: 2.0,
+                            width: 3.0,
                           ),
                         ),
                       ),
                     ),
                   )),
-                  IconButton(icon: Icon(Icons.send), onPressed: () {})
+                  IconButton(
+                      icon: Icon(
+                        Icons.send,
+                        color: Colors.white,
+                      ),
+                      onPressed: () {})
                 ],
               ),
             ),
