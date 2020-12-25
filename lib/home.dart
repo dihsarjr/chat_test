@@ -29,6 +29,7 @@ class _HomeState extends State<Home> {
           // ignore: deprecated_member_use
           stream: Firestore.instance
               .collection('user/6xL8f2NPL3QXqAJizQ64/message')
+              .orderBy("time", descending: true)
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
