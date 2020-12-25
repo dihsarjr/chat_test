@@ -28,38 +28,40 @@ class _HomeState extends State<Home> {
       body: StreamBuilder<dynamic>(
           // ignore: deprecated_member_use
           stream: Firestore.instance
-              .collection('user/rqFPa0feYb4wz7PzGHmr/100/')
+              .collection('user/6xL8f2NPL3QXqAJizQ64/message')
               .snapshots(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              final chat = snapshot.data.documents;
-              print(chat);
+              return ListView(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: ListView.builder(
+                      itemBuilder: (ctx, i) {
+                        return Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (ctx) => ChatScreen()));
+                                },
+                                child: Contact(
+                                  image: snapshot.data.documents[i]["image"],
+                                  name: snapshot.data.documents[i]["text"],
+                                )));
+                      },
+                      itemCount: snapshot.data.documents.length,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                    ),
+                  )
+                ],
+              );
+            } else {
+              return Text("data");
             }
-
-            return ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: ListView.builder(
-                    itemBuilder: (ctx, i) {
-                      return Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (ctx) => ChatScreen()));
-                              },
-                              child: Contact()));
-                    },
-                    itemCount: 10,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                  ),
-                )
-              ],
-            );
           }),
     );
   }

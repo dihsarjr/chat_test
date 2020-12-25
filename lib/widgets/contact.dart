@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Contact extends StatelessWidget {
-  const Contact({
-    Key key,
-  }) : super(key: key);
+class Contact extends StatefulWidget {
+  String name;
+  String image;
 
+  Contact({Key key, this.image, this.name}) : super(key: key);
+
+  @override
+  _ContactState createState() => _ContactState();
+}
+
+class _ContactState extends State<Contact> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,8 +23,7 @@ class Contact extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 40,
-                  backgroundImage: NetworkImage(
-                      "https://images.unsplash.com/photo-1554384645-13eab165c24b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80"),
+                  backgroundImage: NetworkImage(widget.image),
                 ),
                 SizedBox(
                   width: 15,
@@ -33,7 +38,7 @@ class Contact extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "John deo",
+                          "${widget.name}",
                           style: TextStyle(
                             fontSize: 20,
                           ),
